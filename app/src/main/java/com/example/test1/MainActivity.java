@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.test1.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,11 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-
                 } else {
-                    // User is signed out
-
                 }
 
             }
@@ -51,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.btn_sign_in).setOnClickListener(this);
         findViewById(R.id.btn_registration).setOnClickListener(this);
-
-
     }
 
     @Override
@@ -65,15 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             registration(ETemail.getText().toString(),ETpassword.getText().toString());
         }
-//        btn_sign_in.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent intent = new Intent(".ToDoList");
-//                        startActivity(intent);
-//                    }
-//                }
-//        );
     }
 
 

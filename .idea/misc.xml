@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.211" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2455" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/activity_second.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/activity_to_do_list.xml" value="0.2617753623188406" />
@@ -12,6 +14,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/fragment_first2.xml" value="0.2921195652173913" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/fragment_second.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/layout/fragment_second2.xml" value="0.2617753623188406" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/Test12/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.211" />
       </map>
     </option>
   </component>

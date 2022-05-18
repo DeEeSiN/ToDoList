@@ -14,7 +14,6 @@ public class DAOEmployee {
     }
     public Task<Void> add(Employee emp)
     {
-
         return databaseReference.push().setValue(emp);
     }
 }

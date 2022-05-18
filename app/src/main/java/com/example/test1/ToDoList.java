@@ -44,7 +44,6 @@ public class ToDoList extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityToDoListBinding binding;
-
     private ArrayList<String> items = new ArrayList<>();
     private ArrayAdapter<String> itemsAdapter;
     private ListView listView;
@@ -52,10 +51,6 @@ public class ToDoList extends AppCompatActivity {
     private EditText et2;
     String value;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee");
-//    FirebaseDatabase database = FirebaseDatabase.getInstance();
-//    DatabaseReference ref = database.getReference();
 
     public static int parseInt(String s){
         int i=Integer.parseInt(s);
@@ -69,14 +64,11 @@ public class ToDoList extends AppCompatActivity {
         binding = ActivityToDoListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
-
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference mDbRef = mDatabase.getReference().child("Employee").child(uid).child("value");
         mDbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               // String prev = snapshot.getValue().toString();
-               // System.out.println("tgtreds===="+prev);
             }
 
             @Override
@@ -94,15 +86,12 @@ public class ToDoList extends AppCompatActivity {
         button = findViewById(R.id.button);
         et2 = findViewById(R.id.editText2);
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-       // DatabaseReference ref = database.getReference().child("Employee");
+        DatabaseReference ref = database.getReference().child("Employee");
         DatabaseReference forVal = database.getReference().child("Employee").child(uid);
         forVal.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //try {
-                //items.removeAll(items);
 
                 if (dataSnapshot.getValue() != null) {
                     value = dataSnapshot.getValue().toString();
@@ -117,8 +106,6 @@ public class ToDoList extends AppCompatActivity {
                             items.add(m.group());
                         }
                     }
-
-
                 } else {
                     System.out.println("Todo is clear");
                 }
@@ -126,111 +113,23 @@ public class ToDoList extends AppCompatActivity {
                 itemsAdapter = new ArrayAdapter<>(ToDoList.this, android.R.layout.simple_list_item_1, items);
                 listView.setAdapter(itemsAdapter);
                 setUpListViewListener();
-            } //catch (Throwable e){
-            //System.out.println(e);
-            //}
-            //}
-
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-
         });
-
-
 
         button.setOnClickListener(v->
         {
             String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            DatabaseReference ref = database.getReference().child("Employee");
-//            DatabaseReference forVal = database.getReference().child("Employee").child(uid);
-//            forVal.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    value = dataSnapshot.getValue().toString();
-//                    System.out.println(value);
-//                    String kukish = value.replace("}"," jg");
-//                    kukish = kukish.replace("value=","thji ");
-//                  Pattern p = Pattern.compile("(?<=\\bthji\\b).*?(?=\\bjg\\b)");
-//                  Matcher m = p.matcher(kukish);
-//
-//                   while (m.find())
-//                   {
-//                       items.add(m.group());
-//                   }
-//                    System.out.println(kukish);
-//                    System.out.println(items);
-//
-//                    listView = findViewById(R.id.listView);
-//                    itemsAdapter = new ArrayAdapter<>(ToDoList.this , android.R.layout.simple_list_item_1, items);
-//                    listView.setAdapter(itemsAdapter);
-//                    setUpListViewListener();
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//
-//            });
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            DatabaseReference ref = database.getReference().child("Employee");
-//            DatabaseReference forVal = database.getReference().child("Employee").child(uid);
-//            forVal.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    //try {
-//
-//
-//                        if (dataSnapshot.getValue() != null) {
-//                            value = dataSnapshot.getValue().toString();
-//                            System.out.println(value);
-//                            String kukish = value.replace("}", " jg");
-//                            kukish = kukish.replace("value=", "thji ");
-//                            Pattern p = Pattern.compile("(?<=\\bthji\\b).*?(?=\\bjg\\b)");
-//                            Matcher m = p.matcher(kukish);
-//
-//                            while (m.find()) {
-//                              //  System.out.println("654363"+ m.group());
-//                                if (m.group() != null) {
-//                                    items.add(m.group());
-//                                }
-//                            }
-//
-//
-//                            listView = findViewById(R.id.listView);
-//                            itemsAdapter = new ArrayAdapter<>(ToDoList.this, android.R.layout.simple_list_item_1, items);
-//                            listView.setAdapter(itemsAdapter);
-//                            setUpListViewListener();
-//                        } else {
-//                            System.out.println("Todo is clear");
-//                        }
-//                    } //catch (Throwable e){
-                        //System.out.println(e);
-                    //}
-                //}
 
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//
-//            });
             System.out.println("ref.getKey()===="+ uid);
             EditText input = findViewById(R.id.editText2);
             String itemText = input.getText().toString();
             String spam = et2.getText().toString();
             Employee emp = new Employee(mail,password,spam);
 
-
             emp.setKey(FirebaseAuth.getInstance().getCurrentUser().getUid());
-//            ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("value").setValue(spam);
-//            ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("login").setValue(mail);
-//            ref.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("password").setValue(password);
-
 
                 if (!(itemText.equals("")) && (itemText != null)) {
                     itemsAdapter.add(spam);
@@ -239,7 +138,6 @@ public class ToDoList extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Please enter text..", Toast.LENGTH_SHORT).show();
                 }
-
 
             Employee employee = new Employee(mail,password,spam);
             ref.child(uid).child(ref.push().getKey()).setValue(employee);
@@ -257,8 +155,8 @@ public class ToDoList extends AppCompatActivity {
                 itemsAdapter.notifyDataSetChanged();
                 System.out.println(listView.getItemAtPosition(i));
 
-               // DatabaseReference ruff = FirebaseDatabase.getInstance().getReference().child("Employee");
-               Query deletedElement = ref.child(uid).orderByChild("value").equalTo(listView.getItemAtPosition(i).toString());
+                DatabaseReference ruff = FirebaseDatabase.getInstance().getReference().child("Employee");
+               Query deletedElement = ruff.child(uid).orderByChild("value").equalTo(listView.getItemAtPosition(i).toString());
                 deletedElement.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -277,11 +175,4 @@ public class ToDoList extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
 }

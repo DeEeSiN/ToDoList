@@ -57,6 +57,7 @@ public class ToDoList extends AppCompatActivity {
         return i;
     }
 
+    //подключение бд и подтягиваю записи юзера
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,6 @@ public class ToDoList extends AppCompatActivity {
 
         });
 
-        DAOEmployee dao = new DAOEmployee();
         Bundle arguments = getIntent().getExtras();
         String mail = arguments.get("mail").toString();
         String password = arguments.get("password").toString();

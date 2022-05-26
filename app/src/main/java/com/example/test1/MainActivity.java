@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn, btn_alert, btn_sign_in;
     private EditText ETemail;
     private EditText ETpassword;
+
+    // инициализация объяектов из xml
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_registration).setOnClickListener(this);
     }
 
+
+    //проверка нажатия кнопки авторизации/регистрации
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.btn_sign_in)
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+    //проверка на правильность введённых данных и если это так, то переход на следующее окно
     public void signin(String email , String password)
     {
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //регистрация пользователя
     public void registration (String email , String password){
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

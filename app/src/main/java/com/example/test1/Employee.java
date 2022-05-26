@@ -5,7 +5,8 @@ public class Employee {
     private String password;
     private String value="";
     private String key;
-    public Employee(){}
+
+    //создание юзера
     public Employee(String login, String password, String value)
     {
         this.login = login;
